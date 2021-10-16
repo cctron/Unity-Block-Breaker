@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour
     [SerializeField] Paddle paddle;
     [SerializeField] float xPush = 2f;
     [SerializeField] float yPush = 15f;
+    [SerializeField] AudioClip[] ballSounds;
 
     //state
     Vector2 paddleToBall;
@@ -47,6 +48,6 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(hasStarted) GetComponent<AudioSource>().Play();
+        if(hasStarted) GetComponent<AudioSource>().PlayOneShot ();
     }
 }
