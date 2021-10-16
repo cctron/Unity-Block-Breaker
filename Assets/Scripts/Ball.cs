@@ -15,10 +15,14 @@ public class Ball : MonoBehaviour
     Vector2 paddleToBall;
     bool hasStarted = false;
 
+    //Cached component references
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         paddleToBall = transform.position - paddle.transform.position;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -48,6 +52,10 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(hasStarted) GetComponent<AudioSource>().PlayOneShot ();
+        if (hasStarted)
+        {
+            AudioClip clip = ballSounds[UnityEngine.Random.Range(0, ballSounds.Length)];
+            audioSource.PlayOneShot(clip);
+        }
     }
 }
